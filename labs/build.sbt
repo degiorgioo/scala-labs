@@ -2,7 +2,7 @@ name := "ScalaLabs"
 
 version := "1.0"
 
-scalaVersion := "2.11.1"
+scalaVersion := "2.11.6"
 
 scalacOptions ++= Seq("-unchecked", "-deprecation")
 
@@ -32,3 +32,4 @@ libraryDependencies ++= Seq("joda-time" % "joda-time" % "1.6",
 
 scalariformSettings
 
+EclipseKeys.withSource := true
