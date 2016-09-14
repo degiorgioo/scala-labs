@@ -1,12 +1,9 @@
 package org.scalalabs.basic.lab02
 
-import org.scalatest.junit.JUnitSuite
-import org.junit.Test
-import java.lang.{ IllegalArgumentException ⇒ IAE }
 import org.junit.runner.RunWith
 import org.specs2.mutable.Specification
 import org.specs2.runner.JUnitRunner
-import ListManipulationExercise02.{ Person ⇒ _ }
+
 import CollectionExercise02.Person
 /**
  * This Lab contains exercises where the usage of
@@ -14,20 +11,6 @@ import CollectionExercise02.Person
  */
 @RunWith(classOf[JUnitRunner])
 class CollectionExerciseTest extends Specification {
-
-  "CollectionExercise01: GoogleCodeJam" should {
-    "get first Element in list" in {
-      val in1 = "ejp mysljylc kd kxveddknmc re jsicpdrysi"
-      val in2 = "rbcpc ypc rtcsra dkh wyfrepkym veddknkmkrkcd"
-      val in3 = "de kr kd eoya kw aej tysr re ujdr lkgc jv"
-      val out1 = "our language is impossible to understand"
-      val out2 = "there are twenty six factorial possibilities"
-      val out3 = "so it is okay if you want to just give up"
-
-      val result = CollectionExercise01.googleCodeJamGooglerese(in1, in2, in3)
-      Seq(out1, out2, out3) === result
-    }
-  }
 
   "CollectionExercise02" should {
     "group a list of adults by age group. Each group is sorted by name" in {

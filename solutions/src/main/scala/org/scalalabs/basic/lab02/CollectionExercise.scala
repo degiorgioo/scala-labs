@@ -3,62 +3,6 @@ package org.scalalabs.basic.lab02
  * This Lab contains exercises where the usage of
  * higher order collection methods can be rehearsed.
  */
-object CollectionExercise01 {
-
-  /**
-   * Taken from: <a href="http://code.google.com/codejam/contest/1460488/dashboard">Problem A. Speaking in Tongues</a>
-   *
-   * Problem
-   * The aim of this task is to translate a language into a new language called Googlerese.
-   * To translate we take any message and replace each English letter with another English letter.
-   * This mapping is one-to-one and onto, which means that the same input letter always gets replaced
-   * with the same output letter, and different input letters always get replaced with different output letters.
-   * A letter may be replaced by itself. Spaces are left as-is.
-   *
-   * For example (and here is a hint!), the translation algorithm includes the following three mappings:
-   * 'a' -> 'y', 'o' -> 'e', and 'z' -> 'q'. This means that "a zoo" will become "y qee".
-   *
-   * Sample Input/Output
-   * Input:
-   * Case 1: ejp mysljylc kd kxveddknmc re jsicpdrysi
-   * Case 2: rbcpc ypc rtcsra dkh wyfrepkym veddknkmkrkcd
-   * Case 3: de kr kd eoya kw aej tysr re ujdr lkgc jv
-   *
-   * Output:
-   * Case 1: our language is impossible to understand
-   * Case 2: there are twenty six factorial possibilities
-   * Case 3: so it is okay if you want to just give up
-   *
-   */
-  def googleCodeJamGooglerese(lines: String*): Seq[String] = {
-
-    //figure out missing chracter mapping
-    val input = "ejp mysljylc kd kxveddknmc re jsicpdrysi rbcpc ypc rtcsra dkh wyfrepkym veddknkmkrkcd de kr kd eoya kw aej tysr re ujdr lkgc jv " filterNot (_ == ' ')
-    val output = "our language is impossible to understand there are twenty six factorial possibilities so it is okay if you want to just give up" filterNot (_ == ' ')
-
-    val alphabet = 'a' to 'z'
-    val missingIn = alphabet filterNot (input contains _)
-    alphabet diff input
-
-    val missingOut = alphabet filterNot (output contains _)
-    alphabet diff output
-    //z and q, hint says z -> q, so remaining is: q -> z
-
-    //visualize missing chars in alphabet
-    val existingCharsSorted = input.toSet.toList.sorted.mkString
-    val visualMissingChars = alphabet.map(c ⇒ if (existingCharsSorted.contains(c)) c else ' ').mkString
-
-    //compute mapping
-    val initialMapping = (input zip output).toSet
-    //ensure 1 to 1 mapping
-    initialMapping.groupBy(_._1).values.forall(_.size == 1)
-
-    val mapper = Map('z' -> 'q', 'q' -> 'z', ' ' -> ' ').withDefaultValue('?') ++ initialMapping
-
-    lines.map(_ map mapper)
-  }
-}
-/*========================================================== */
 
 object CollectionExercise02 {
 
@@ -80,14 +24,6 @@ object CollectionExercise02 {
       .sortBy(_.name)
       .groupBy(_.age / 10 * 10)
   }
-
-  def groupAdultsCountPerAgeGroup(persons: Seq[Person]): Map[Int, Int] = {
-    persons.filter(_.age >= 18)
-      .sortBy(_.name)
-      .groupBy(_.age / 10 * 10)
-      .map { case (ageGroup, persons) ⇒ ageGroup -> persons.size }
-  }
-
 }
 
 /*========================================================== */
